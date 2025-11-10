@@ -6,7 +6,7 @@ import fs from 'fs';
 export async function GET() {
   try {
     // Get CV file path - using the actual filename
-    const cvPath = path.join(process.cwd(), 'public', 'cv', 'Kareem-AbdulBaset-FlowCV-Resume-20251013.pdf');
+    const cvPath = path.join(process.cwd(), 'public', 'cv', 'Kareem-AbdulBaset-FlowCV-Resume-20251111.pdf');
     
     // Check if file exists
     if (!fs.existsSync(cvPath)) {

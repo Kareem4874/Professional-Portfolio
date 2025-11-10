@@ -38,7 +38,7 @@ export async function downloadCV() {
     
     // Create download link
     const link = document.createElement('a');
-    link.href = '/cv/Kareem-AbdulBaset-FlowCV-Resume-20251013.pdf';
+    link.href = '/cv/Kareem-AbdulBaset-FlowCV-Resume-20251111.pdf';
     link.download = 'Kareem-AbdulBaset-Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -57,8 +57,8 @@ export async function downloadCV() {
 export function getCVInfo() {
   return {
     filename: 'Kareem-AbdulBaset-Resume.pdf',
-    path: '/cv/Kareem-AbdulBaset-FlowCV-Resume-20251013.pdf',
+    path: '/cv/Kareem-AbdulBaset-FlowCV-Resume-20251111.pdf',
     size: '~150KB',
-    lastUpdated: '2024-10',
+    lastUpdated: '2024-11',
   };
 }
