@@ -1,0 +1,18 @@
+{
+  "name": "Kareem AbdulBaset - Frontend Developer Portfolio",
+  "short_name": "Kareem Portfolio",
+  "description": "Frontend Developer specializing in Next.js, React, and TypeScript.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+

@@ -1,0 +1,398 @@
+---
+title: "Complete Guide to React: From Beginner to Advanced"
+date: "2025-01-15"
+description: "Learn React, the most popular library for building interactive user interfaces. A comprehensive guide covering components, Hooks, state management, and best practices."
+author: "Kareem AbdulBaset"
+tags: ["React", "JavaScript", "Frontend", "Web Development", "Tutorial"]
+category: "Tutorial"
+published: true
+featured: true
+---
+
+# Complete Guide to React: From Beginner to Advanced
+
+React is an open-source JavaScript library developed by Facebook for building interactive user interfaces. In this article, we'll explore React fundamentals and advanced concepts you need to become a professional React developer.
+
+## What is React?
+
+React is a library, not a full framework. This means React focuses on one part of web development: building user interfaces.
+
+### Why React?
+
+- **Reusable Components**: Build components once and use them anywhere
+- **Virtual DOM**: Improves performance by intelligently updating the DOM
+- **Large Community**: Active community with abundant resources
+- **Flexibility**: Can be used with other libraries and tools
+
+## Components
+
+Components are the fundamental building blocks of React. Each component is an independent piece of the user interface.
+
+### Functional Components
+
+```jsx
+function Welcome({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+
+// Using the component
+<Welcome name="Kareem" />
+```
+
+### Components with Hooks
+
+```jsx
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+## Essential Hooks
+
+Hooks are special functions that let you "hook into" React features from functional components.
+
+### useState
+
+```jsx
+import { useState } from 'react';
+
+function Form() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  return (
+    <form>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+      />
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+    </form>
+  );
+}
+```
+
+### useEffect
+
+```jsx
+import { useState, useEffect } from 'react';
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Fetch user data when component mounts
+    fetch(`/api/users/${userId}`)
+      .then(res => res.json())
+      .then(data => setUser(data));
+  }, [userId]); // Re-runs when userId changes
+
+  if (!user) return <div>Loading...</div>;
+
+  return <div>{user.name}</div>;
+}
+```
+
+### useMemo and useCallback
+
+```jsx
+import { useMemo, useCallback } from 'react';
+
+function ExpensiveComponent({ items }) {
+  // Expensive calculation - only runs when items change
+  const expensiveValue = useMemo(() => {
+    return items.reduce((sum, item) => sum + item.value, 0);
+  }, [items]);
+
+  // Memoized function - not recreated on every render
+  const handleClick = useCallback(() => {
+    console.log('Clicked');
+  }, []);
+
+  return (
+    <div>
+      <p>Value: {expensiveValue}</p>
+      <button onClick={handleClick}>Click me</button>
+    </div>
+  );
+}
+```
+
+## State Management
+
+### Local State
+
+```jsx
+function TodoList() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
+
+  const addTodo = () => {
+    setTodos([...todos, { id: Date.now(), text: input }]);
+    setInput('');
+  };
+
+  return (
+    <div>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}>{todo.text}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+### Context API for Global State
+
+```jsx
+import { createContext, useContext, useState } from 'react';
+
+// Create Context
+const ThemeContext = createContext();
+
+// Provider Component
+function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light');
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+// Custom Hook
+function useTheme() {
+  return useContext(ThemeContext);
+}
+
+// Usage in components
+function App() {
+  return (
+    <ThemeProvider>
+      <Header />
+    </ThemeProvider>
+  );
+}
+
+function Header() {
+  const { theme, setTheme } = useTheme();
+  
+  return (
+    <header>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle Theme
+      </button>
+    </header>
+  );
+}
+```
+
+## Best Practices
+
+### 1. Component Splitting
+
+```jsx
+// ❌ Too large component
+function UserDashboard() {
+  // 200 lines of code
+}
+
+// ✅ Small, focused components
+function UserDashboard() {
+  return (
+    <div>
+      <UserHeader />
+      <UserStats />
+      <UserActivity />
+    </div>
+  );
+}
+```
+
+### 2. Proper Key Usage
+
+```jsx
+// ✅ Use unique id
+{items.map(item => (
+  <Item key={item.id} data={item} />
+))}
+
+// ❌ Using index (causes issues when reordering)
+{items.map((item, index) => (
+  <Item key={index} data={item} />
+))}
+```
+
+### 3. Performance Optimization
+
+```jsx
+import { memo } from 'react';
+
+// Prevent unnecessary re-renders
+const ExpensiveComponent = memo(function ExpensiveComponent({ data }) {
+  return <div>{/* render logic */}</div>;
+});
+```
+
+### 4. Error Handling
+
+```jsx
+import { ErrorBoundary } from 'react-error-boundary';
+
+function ErrorFallback({ error }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <MyComponent />
+    </ErrorBoundary>
+  );
+}
+```
+
+## Useful Tools with React
+
+### 1. React Router for Navigation
+
+```jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+### 2. React Query for Data Fetching
+
+```jsx
+import { useQuery } from '@tanstack/react-query';
+
+function Users() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['users'],
+    queryFn: () => fetch('/api/users').then(res => res.json())
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error occurred</div>;
+
+  return (
+    <ul>
+      {data.map(user => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## Getting Started Tips
+
+1. **Start Simple**: Learn components and useState first
+2. **Practice with Projects**: Building small apps helps understanding
+3. **Read Official Docs**: React Docs are excellent and up-to-date
+4. **Use DevTools**: React Developer Tools help with debugging
+5. **Follow Best Practices**: Adhere to code standards and recommended patterns
+
+## Common Patterns
+
+### Custom Hooks
+
+```jsx
+function useLocalStorage(key, initialValue) {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      return initialValue;
+    }
+  });
+
+  const setValue = (value) => {
+    try {
+      setStoredValue(value);
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return [storedValue, setValue];
+}
+
+// Usage
+function App() {
+  const [name, setName] = useLocalStorage('name', '');
+  return <input value={name} onChange={(e) => setName(e.target.value)} />;
+}
+```
+
+### Higher-Order Components (HOCs)
+
+```jsx
+function withLoading(Component) {
+  return function WithLoadingComponent({ isLoading, ...props }) {
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+    return <Component {...props} />;
+  };
+}
+
+// Usage
+const UserProfileWithLoading = withLoading(UserProfile);
+```
+
+## Conclusion
+
+React is a powerful tool for building modern user interfaces. With understanding of components, Hooks, and state management, you can build interactive and advanced web applications.
+
+Start with a small project and gradually improve your skills. The React community is large and helpful, so don't hesitate to ask for help!
+
+---
+
+**Additional Resources:**
+- [React Documentation](https://react.dev)
+- [React Patterns](https://reactpatterns.com)
+- [Awesome React](https://github.com/enaqx/awesome-react)
