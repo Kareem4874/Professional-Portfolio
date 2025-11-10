@@ -38,8 +38,25 @@ export const socialProfiles = {
   linkedin: "yourprofile",
 };
 
+const normalizedSiteUrl = (() => {
+  const candidate = siteConfig.url;
+  try {
+    if (!candidate) {
+      return new URL("https://yourportfolio.com");
+    }
+
+    if (candidate.startsWith("http://") || candidate.startsWith("https://")) {
+      return new URL(candidate);
+    }
+
+    return new URL(`https://${candidate}`);
+  } catch {
+    return new URL("https://yourportfolio.com");
+  }
+})();
+
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: normalizedSiteUrl,
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.name}`,
