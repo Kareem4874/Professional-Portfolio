@@ -61,10 +61,15 @@ export function CTA() {
                 asChild
                 className="group border-2 border-border dark:border-border hover:border-primary dark:hover:border-primary hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300"
               >
-                <a href="/api/download-cv" download="Kareem-AbdulBaset-Resume.pdf">
+                <Link
+                  href="/cv/Kareem-AbdulBaset-FlowCV-Resume-20251111.pdf"
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
                   <span>Download Resume</span>
-                </a>
+                </Link>
               </Button>
             </div>
 
