@@ -455,7 +455,7 @@ export function Hero() {
               {[
                 { icon: Github, href: "https://github.com/Kareem4874", label: "GitHub", color: "hover:text-purple-400" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/kareem-abdulbaset-763294352/", label: "LinkedIn", color: "hover:text-blue-400" },
-                { icon: Download, href: "/cv/Kareem-AbdulBaset-FlowCV-Resume-20251013.pdf", label: "Resume", color: "hover:text-green-400" },
+                { icon: Download, href: "/cv/Kareem-AbdulBaset-FlowCV-Resume-20251111.pdf", label: "Resume", color: "hover:text-green-400" },
               ].map((social, index) => {
                 const Icon = social.icon;
                 return (
