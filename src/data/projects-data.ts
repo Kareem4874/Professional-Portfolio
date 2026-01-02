@@ -37,9 +37,9 @@ export const projectsData: Project[] = [
     image: "/projects/Portfolio/thumbnail.webp",
     images: [
       "/projects/Portfolio/thumbnail.webp",
-      "/projects/Portfolio/about.webp",    
-      "/projects/Portfolio/blog.webp",     
-      "/projects/Portfolio/works.webp"     
+      "/projects/Portfolio/about.webp",
+      "/projects/Portfolio/blog.webp",
+      "/projects/Portfolio/works.webp"
     ],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     category: "Frontend",
@@ -110,5 +110,50 @@ export const projectsData: Project[] = [
     status: "Completed",
     date: "2023-06",
     role: "Frontend Developer"
+  },
+  {
+    id: "6",
+    slug: "movie-app",
+    title: "Movie App",
+    description: "A modern movie discovery platform with search, filtering, and detailed movie information.",
+    longDescription: "A feature-rich movie application built with React that allows users to discover, search, and explore movies. Features include movie browsing, search functionality, detailed movie information, and a beautiful responsive design.",
+    image: "/projects/Movie App/42d7f1e3-e119-4834-94be-8d7a8005c247.jpg",
+    images: [
+      "/projects/Movie App/42d7f1e3-e119-4834-94be-8d7a8005c247.jpg",
+      "/projects/Movie App/4e280d35-a2fc-40c2-92a9-2dfff11b0688.jpg",
+      "/projects/Movie App/porfile photo.jpg"
+    ],
+    technologies: ["React", "JavaScript", "CSS3", "TMDB API"],
+    category: "Frontend",
+    tags: ["movies", "entertainment", "api", "react"],
+    liveUrl: "https://movies-app-teal-xi.vercel.app/",
+    githubUrl: "https://github.com/Kareem4874/Movies-APP-",
+    featured: true,
+    status: "Completed",
+    date: "2024-01",
+    role: "Frontend Developer"
+  },
+  {
+    id: "7",
+    slug: "dr-jehan-portfolio",
+    title: "DR Jehan Portfolio",
+    description: "A professional medical portfolio website showcasing Dr. Jehan's expertise and services.",
+    longDescription: "An elegant and professional portfolio website designed for Dr. Jehan, featuring a modern design with sections for services, about, qualifications, and contact information. Built with modern web technologies for optimal performance.",
+    image: "/projects/DR - Jehan Portfolio/06c37fe1-c1a0-4eba-b0d6-19d7a13a9622.jpg",
+    images: [
+      "/projects/DR - Jehan Portfolio/06c37fe1-c1a0-4eba-b0d6-19d7a13a9622.jpg",
+      "/projects/DR - Jehan Portfolio/4e7e0238-382b-48a5-9c49-e920150e2c06.jpg",
+      "/projects/DR - Jehan Portfolio/Photo profille.jpg",
+      "/projects/DR - Jehan Portfolio/bcb35e14-e2e0-4463-8d8d-aff1fe399397.jpg"
+    ],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+    category: "Frontend",
+    tags: ["portfolio", "medical", "professional", "healthcare"],
+    liveUrl: "https://dr-jehan-portfolio.vercel.app/",
+    githubUrl: "https://github.com/Kareem4874/DR-Jehan-Mostafa-Portfolio.",
+    featured: true,
+    status: "Completed",
+    date: "2024-02",
+    role: "Frontend Developer & Designer"
   }
 ];

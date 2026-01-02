@@ -1,15 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ExternalLink, 
-  Github, 
-  Calendar, 
-  Clock, 
-  Star, 
-  Eye, 
+import {
+  ExternalLink,
+  Github,
+  Calendar,
+  Clock,
+  Star,
+  Eye,
   Heart,
   Code2,
   Sparkles,
@@ -18,6 +17,7 @@ import {
   ChevronRight,
   Folder
 } from "lucide-react";
+import Link from "next/link";
 
 type ViewMode = 'grid' | 'list';
 
@@ -124,17 +124,17 @@ export function ProjectCard({ project = demoProject, index = 0 }: ProjectCardPro
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-  
+
   const categoryStyle = getCategoryStyles(project.category || 'Web Development');
   const CategoryIcon = categoryStyle.icon;
 
@@ -148,8 +148,8 @@ export function ProjectCard({ project = demoProject, index = 0 }: ProjectCardPro
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.5, 
+      transition={{
+        duration: 0.5,
         delay: index * 0.1,
         ease: "easeOut"
       }}
@@ -159,7 +159,7 @@ export function ProjectCard({ project = demoProject, index = 0 }: ProjectCardPro
     >
       {/* Main Card Container */}
       <div className="relative h-full bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-slate-800 shadow-lg hover:shadow-2xl transition-all duration-500">
-        
+
         {/* Animated Border Gradient */}
         <motion.div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -179,21 +179,20 @@ export function ProjectCard({ project = demoProject, index = 0 }: ProjectCardPro
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 animate-pulse" />
           )}
-          
+
           {/* Actual Image */}
           <motion.img
             src={project.image}
             alt={project.title}
             onLoad={() => setImageLoaded(true)}
-            className={`w-full h-full object-cover transition-all duration-700 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`w-full h-full object-cover transition-all duration-700 ${imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
             animate={{
               scale: isHovered ? 1.1 : 1,
             }}
             transition={{ duration: 0.7 }}
           />
-          
+
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
@@ -271,10 +270,9 @@ export function ProjectCard({ project = demoProject, index = 0 }: ProjectCardPro
                 whileTap={{ scale: 0.95 }}
                 className="px-2.5 py-1.5 bg-white/90 dark:bg-black/70 backdrop-blur-md rounded-lg flex items-center gap-1.5"
               >
-                <Heart 
-                  className={`w-3.5 h-3.5 transition-all ${
-                    isLiked ? 'text-red-500 fill-red-500' : 'text-gray-600 dark:text-gray-400'
-                  }`} 
+                <Heart
+                  className={`w-3.5 h-3.5 transition-all ${isLiked ? 'text-red-500 fill-red-500' : 'text-gray-600 dark:text-gray-400'
+                    }`}
                 />
                 <span className="text-xs font-semibold text-gray-900 dark:text-white">
                   {(project.stats.likes || 0) + (isLiked ? 1 : 0)}
@@ -286,18 +284,18 @@ export function ProjectCard({ project = demoProject, index = 0 }: ProjectCardPro
 
         {/* Content Section */}
         <div className="p-5 space-y-4">
-          
+
           {/* Category Badge */}
           <div className="flex items-center gap-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${categoryStyle.lightBg} border border-gray-200 dark:border-slate-700`}
             >
-              <CategoryIcon 
-                className="w-3.5 h-3.5" 
+              <CategoryIcon
+                className="w-3.5 h-3.5"
                 style={{ color: categoryStyle.color }}
               />
-              <span 
+              <span
                 className="text-xs font-semibold"
                 style={{ color: categoryStyle.color }}
               >
@@ -351,25 +349,21 @@ export function ProjectCard({ project = demoProject, index = 0 }: ProjectCardPro
             )}
           </div>
 
-          {/* CTA Button - Simple and Clean */}
-          <Link 
+          {/* CTA Button - Fully Clickable */}
+          <Link
             href={`/projects/${project.slug || project.id}`}
-            className="block w-full"
+            className={`relative z-10 block w-full px-4 py-3 bg-gradient-to-r ${categoryStyle.gradient} text-white font-semibold text-sm rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 text-center cursor-pointer`}
           >
-            <motion.div
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className={`w-full px-4 py-3 bg-gradient-to-r ${categoryStyle.gradient} text-white font-semibold text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer`}
-            >
-              <span>View Project Details</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </motion.div>
+            <span className="flex items-center justify-center gap-2 pointer-events-none">
+              View Project Details
+              <ChevronRight className="w-4 h-4" />
+            </span>
           </Link>
         </div>
 
         {/* Bottom Accent Line */}
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-1"
+          className="absolute bottom-0 left-0 right-0 h-1 pointer-events-none"
           style={{
             background: `linear-gradient(to right, transparent, ${categoryStyle.color}, transparent)`,
           }}

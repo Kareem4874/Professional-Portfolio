@@ -4,27 +4,27 @@ export interface Project {
   slug: string; // URL-friendly slug
   description: string;
   longDescription: string;
-  
+
   // Images
   image: string; // Main thumbnail
   images: string[]; // Gallery images
-  
+
   // Technical Details
   technologies: string[];
   category: "Frontend" | "Full Stack" | "UI/UX" | "Mobile" | "Other";
   tags: string[]; // Additional tags for filtering
-  
+
   // Links
   liveUrl?: string;
   githubUrl?: string;
   caseStudyUrl?: string;
-  
+
   // Metadata
   featured: boolean;
   status: "Completed" | "In Progress" | "Archived";
   date: string; // YYYY-MM format
   duration?: string; // "2 months"
-  
+
   // Additional Info
   role?: string; // "Lead Developer", "Solo Project"
   team?: string[]; // Team members
@@ -110,9 +110,9 @@ export const projectsData: Project[] = [
     image: "/projects/Portfolio/thumbnail.webp",
     images: [
       "/projects/Portfolio/thumbnail.webp",
-      "/projects/Portfolio/about.webp",    
-      "/projects/Portfolio/blog.webp",     
-      "/projects/Portfolio/works.webp"     
+      "/projects/Portfolio/about.webp",
+      "/projects/Portfolio/blog.webp",
+      "/projects/Portfolio/works.webp"
     ],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React"],
     category: "Frontend",
@@ -288,9 +288,114 @@ export const projectsData: Project[] = [
       "Fast API integration"
     ],
     metrics: [
-      { label: "API Response Time", value: "< 1s" },
+      { label: "API Response Time", value: "<1s" },
       { label: "Accuracy", value: "98%" },
       { label: "Cities Supported", value: "200K+" }
+    ]
+  },
+  {
+    id: "6",
+    slug: "movie-app",
+    title: "Movie App",
+    description: "A modern movie discovery platform with search, filtering, and detailed movie information.",
+    longDescription: `
+      A feature-rich movie application built with React that allows users to discover, search, 
+      and explore movies from a vast database. The app integrates with TMDB API to provide 
+      up-to-date movie information, ratings, and details.
+      
+      Users can browse trending movies, search for specific titles, view detailed movie 
+      information including cast, overview, and ratings. The application features a modern, 
+      responsive design with smooth animations and an intuitive user interface.
+    `,
+    image: "/projects/Movie App/42d7f1e3-e119-4834-94be-8d7a8005c247.jpg",
+    images: [
+      "/projects/Movie App/42d7f1e3-e119-4834-94be-8d7a8005c247.jpg",
+      "/projects/Movie App/4e280d35-a2fc-40c2-92a9-2dfff11b0688.jpg",
+      "/projects/Movie App/porfile photo.jpg"
+    ],
+    technologies: ["React", "JavaScript", "CSS3", "TMDB API"],
+    category: "Frontend",
+    tags: ["movies", "entertainment", "api", "react"],
+    liveUrl: "https://movies-app-teal-xi.vercel.app/",
+    githubUrl: "https://github.com/Kareem4874/Movies-APP-",
+    featured: true,
+    status: "Completed",
+    date: "2024-01",
+    duration: "1.5 months",
+    role: "Frontend Developer",
+    challenges: [
+      "Integrating TMDB API for movie data",
+      "Implementing efficient search functionality",
+      "Creating responsive movie card layouts",
+      "Optimizing image loading for movie posters"
+    ],
+    features: [
+      "Browse trending and popular movies",
+      "Search movies by title",
+      "View detailed movie information",
+      "Movie ratings and reviews",
+      "Cast and crew information",
+      "Responsive design for all devices",
+      "Smooth animations and transitions",
+      "Fast API data fetching"
+    ],
+    metrics: [
+      { label: "Movies Available", value: "500K+" },
+      { label: "Search Speed", value: "<0.5s" },
+      { label: "Mobile Responsive", value: "100%" }
+    ]
+  },
+  {
+    id: "7",
+    slug: "dr-jehan-portfolio",
+    title: "DR Jehan Portfolio",
+    description: "A professional medical portfolio website showcasing Dr. Jehan's expertise and services.",
+    longDescription: `
+      An elegant and professional portfolio website designed for Dr. Jehan, a medical professional. 
+      The website features a modern, clean design that effectively communicates expertise, 
+      services, and qualifications in the healthcare field.
+      
+      Built with Next.js and Tailwind CSS, the site includes sections for services, about, 
+      qualifications, testimonials, and contact information. The design emphasizes trust, 
+      professionalism, and accessibility for patients seeking medical services.
+    `,
+    image: "/projects/DR - Jehan Portfolio/06c37fe1-c1a0-4eba-b0d6-19d7a13a9622.jpg",
+    images: [
+      "/projects/DR - Jehan Portfolio/06c37fe1-c1a0-4eba-b0d6-19d7a13a9622.jpg",
+      "/projects/DR - Jehan Portfolio/4e7e0238-382b-48a5-9c49-e920150e2c06.jpg",
+      "/projects/DR - Jehan Portfolio/Photo profille.jpg",
+      "/projects/DR - Jehan Portfolio/bcb35e14-e2e0-4463-8d8d-aff1fe399397.jpg"
+    ],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+    category: "Frontend",
+    tags: ["portfolio", "medical", "professional", "healthcare"],
+    liveUrl: "https://dr-jehan-portfolio.vercel.app/",
+    githubUrl: "https://github.com/Kareem4874/DR-Jehan-Mostafa-Portfolio.",
+    featured: true,
+    status: "Completed",
+    date: "2024-02",
+    duration: "2 months",
+    role: "Frontend Developer & Designer",
+    challenges: [
+      "Creating a professional medical-themed design",
+      "Ensuring accessibility for all users",
+      "Building trust through visual design",
+      "Optimizing for fast page loads"
+    ],
+    features: [
+      "Professional hero section",
+      "Services showcase",
+      "About and qualifications section",
+      "Patient testimonials",
+      "Contact form integration",
+      "Responsive design",
+      "SEO optimized",
+      "Fast performance"
+    ],
+    metrics: [
+      { label: "Lighthouse Score", value: "95+" },
+      { label: "Page Load", value: "<2s" },
+      { label: "Accessibility", value: "AAA" }
     ]
   }
 ];
@@ -312,17 +417,17 @@ export const getProjectsByCategory = (category: string) => {
 };
 
 export const getProjectsByTechnology = (tech: string) => {
-  return projectsData.filter(project => 
+  return projectsData.filter(project =>
     project.technologies.some(t => t.toLowerCase().includes(tech.toLowerCase()))
   );
 };
 
 export const getRelatedProjects = (currentProject: Project, limit = 3) => {
   return projectsData
-    .filter(project => 
+    .filter(project =>
       project.id !== currentProject.id &&
       (project.category === currentProject.category ||
-       project.technologies.some(tech => currentProject.technologies.includes(tech)))
+        project.technologies.some(tech => currentProject.technologies.includes(tech)))
     )
     .slice(0, limit);
 };
